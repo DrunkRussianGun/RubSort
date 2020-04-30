@@ -6,9 +6,9 @@ namespace IdentitySystem
     {
         public string Email;
 
-        public User(string email, string password)
+        public User(string email)
         {
-            
+            Email = email;
         }
 
         public bool ComparePassword(string comparePassw)

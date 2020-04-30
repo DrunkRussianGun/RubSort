@@ -8,4 +8,14 @@
       <ProjectReference Include="..\DataStorageSystem\DataStorageSystem.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="5.0.0-preview.3.20214.6" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore.Authentication.Cookies, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
+        <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.authentication.cookies\2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authentication.Cookies.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
