@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Net.Http;
+using System.Security.Claims;
 using MapSystem;
+using ApiApplication;
 
 namespace Api
 {
@@ -12,7 +14,6 @@ namespace Api
         {
             _httpClient = httpClient;
         }
-        
         //...
     }
 }

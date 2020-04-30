@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using DataStorageSystem;
 
 namespace IdentitySystem
@@ -12,7 +11,6 @@ namespace IdentitySystem
     public class AuthenticationManager
     {
         private readonly IEntityRepository<UserDbo> _userRepository;
-
         public AuthenticationManager(IEntityRepository<UserDbo> userRepository)
         {
             _userRepository = userRepository;
@@ -28,14 +26,26 @@ namespace IdentitySystem
             _userRepository.Update(new UserDbo() { Email = userEmail, Password = EncryptPassword(password, userEmail) });
         }
 
-        public Task<ClaimsIdentity> Register(string userEmail, string password)//что метод принимает?
+        public ClaimsIdentity Register(string userEmail, string password)
         {
-            if(!IsRegisteredUser(userEmail))
-                return new Task<ClaimsIdentity>(null);
+            if(IsRegisteredUser(userEmail))
+                return null;
             _userRepository.Add(new UserDbo() {Email = userEmail, Password = EncryptPassword(password, userEmail)});
             return Login(userEmail);
         }
 
+        public ClaimsIdentity Login(string userEmail)
+        {
+            if(!IsRegisteredUser(userEmail))
+                return null;
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, userEmail)
+            };
+            return new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
+        }
+        
         private string EncryptPassword(string password, string userEmail)
         {
             var pass = Encoding.UTF8.GetBytes(password);
@@ -48,16 +58,6 @@ namespace IdentitySystem
         {
             var md5 = MD5.Create();
             return md5.ComputeHash(Encoding.UTF8.GetBytes(entropyString));
-        }
-        
-        public async Task<ClaimsIdentity> Login(string userName)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
-            };
-            return new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
         }
     }
 }

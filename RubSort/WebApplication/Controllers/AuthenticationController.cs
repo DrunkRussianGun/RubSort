@@ -1,4 +1,8 @@
-﻿using Api;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
+using Api;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Controllers
@@ -11,12 +15,10 @@ namespace WebApplication.Controllers
         {
             _apiClient = apiClient;
         }
-        // GET
-        public IActionResult Login()
-        {
-            return View();
-        }
-        
+
+        [HttpGet]
+        public IActionResult Login() => View();
+
         public IActionResult Register()
         {
             return View();
