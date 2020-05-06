@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+        <RootNamespace>RubSort.WebApplication</RootNamespace>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\ApiClient\ApiClient.csproj" />
+    </ItemGroup>
+
+</Project>

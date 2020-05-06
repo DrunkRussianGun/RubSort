@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>ApiClient</AssemblyName>
+        <RootNamespace>RubSort.ApiClient</RootNamespace>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+
+</Project>
