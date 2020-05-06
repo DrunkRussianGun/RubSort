@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
-using DataStorageSystem;
+using RubSort.DataStorageSystem;
 
-namespace IdentitySystem
+namespace RubSort.IdentitySystem
 {
     public class AuthenticationManager : IAuthenticationManager<ClaimsIdentity>
     {

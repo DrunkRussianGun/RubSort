@@ -2,7 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>RubSort.Core</RootNamespace>
+        <AssemblyName>ApiClient</AssemblyName>
+        <RootNamespace>RubSort.ApiClient</RootNamespace>
         <LangVersion>8</LangVersion>
     </PropertyGroup>
 

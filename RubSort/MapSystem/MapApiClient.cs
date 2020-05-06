@@ -2,7 +2,7 @@
 using System.Net.Http;
 using GeoCoordinatePortable;
 
-namespace MapSystem
+namespace RubSort.MapSystem
 {
     public class MapApiClient
     {

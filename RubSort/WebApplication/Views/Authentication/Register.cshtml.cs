@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebApplication.Views.Authentication
+namespace RubSort.WebApplication.Views.Authentication
 {
     public class Register : PageModel
     {

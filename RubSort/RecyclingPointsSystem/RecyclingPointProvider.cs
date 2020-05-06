@@ -1,7 +1,7 @@
 ﻿using System;
-using DataStorageSystem;
+using RubSort.DataStorageSystem;
 
-namespace RecyclingPointsSystem
+namespace RubSort.RecyclingPointsSystem
 {
     public class RecyclingPointProvider
     {

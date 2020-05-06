@@ -1,7 +1,4 @@
-﻿using System;
-using System.Dynamic;
-
-namespace DataStorageSystem
+﻿namespace RubSort.DataStorageSystem
 {
     public interface IEntityRepository<T>
     {

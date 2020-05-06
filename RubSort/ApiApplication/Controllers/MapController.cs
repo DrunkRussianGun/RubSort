@@ -1,8 +1,8 @@
 ﻿using System;
-using MapSystem;
 using Microsoft.AspNetCore.Mvc;
+using RubSort.MapSystem;
 
-namespace ApiApplication.Controllers
+namespace RubSort.ApiApplication.Controllers
 {
     public class MapController : Controller
     {

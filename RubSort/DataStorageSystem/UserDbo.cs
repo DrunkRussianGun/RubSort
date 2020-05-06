@@ -1,4 +1,4 @@
-﻿namespace DataStorageSystem
+﻿namespace RubSort.DataStorageSystem
 {
     public class UserDbo: EntityDbo
     {

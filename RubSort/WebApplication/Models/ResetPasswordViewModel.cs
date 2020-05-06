@@ -1,4 +1,4 @@
-﻿namespace WebApplication.Models
+﻿namespace RubSort.WebApplication.Models
 {
     public class ResetPasswordViewModel
     {

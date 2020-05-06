@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace WebApplication.Views.Map
+namespace RubSort.WebApplication.Views.Map
 {
     public class Index : PageModel
     {

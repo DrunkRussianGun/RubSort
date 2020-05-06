@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
-using ApiApplication.Models;
-using IdentitySystem;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using RubSort.ApiApplication.Models;
+using RubSort.IdentitySystem;
 
-namespace ApiApplication.Controllers
+namespace RubSort.ApiApplication.Controllers
 {
     public class AuthenticationController : Controller
     {

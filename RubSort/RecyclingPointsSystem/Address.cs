@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RecyclingPointsSystem
+namespace RubSort.RecyclingPointsSystem
 {
     public class Address
     {

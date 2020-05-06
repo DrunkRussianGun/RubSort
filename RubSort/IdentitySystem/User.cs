@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IdentitySystem
+namespace RubSort.IdentitySystem
 {
     public class User
     {

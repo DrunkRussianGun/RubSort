@@ -1,17 +1,12 @@
-﻿using System.Security.Claims;
-using System.Threading.Tasks;
-using Api;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication.Controllers
+namespace RubSort.WebApplication.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private ApiClient _apiClient;
+        private ApiClient.ApiClient _apiClient;
 
-        public AuthenticationController(ApiClient apiClient)
+        public AuthenticationController(ApiClient.ApiClient apiClient)
         {
             _apiClient = apiClient;
         }

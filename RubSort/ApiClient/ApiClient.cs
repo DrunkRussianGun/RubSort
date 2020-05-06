@@ -1,10 +1,6 @@
-﻿using System;
-using System.Net.Http;
-using System.Security.Claims;
-using MapSystem;
-using ApiApplication;
+﻿using System.Net.Http;
 
-namespace Api
+namespace RubSort.ApiClient
 {
     public class ApiClient
     {

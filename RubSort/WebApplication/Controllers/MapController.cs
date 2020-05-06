@@ -1,13 +1,12 @@
-﻿using Api;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication.Controllers
+namespace RubSort.WebApplication.Controllers
 {
     public class MapController : Controller
     {
-        private ApiClient _apiClient;
+        private ApiClient.ApiClient _apiClient;
 
-        public MapController(ApiClient apiClient)
+        public MapController(ApiClient.ApiClient apiClient)
         {
             _apiClient = apiClient;
         }

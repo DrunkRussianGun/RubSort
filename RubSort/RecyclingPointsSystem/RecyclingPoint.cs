@@ -1,6 +1,6 @@
 ﻿using GeoCoordinatePortable;
 
-namespace RecyclingPointsSystem
+namespace RubSort.RecyclingPointsSystem
 {
     public class RecyclingPoint
     {

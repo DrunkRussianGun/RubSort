@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using IdentitySystem;
+using RubSort.IdentitySystem;
 
-namespace ApiApplication.Models
+namespace RubSort.ApiApplication.Models
 {
     public class UserDto
     {

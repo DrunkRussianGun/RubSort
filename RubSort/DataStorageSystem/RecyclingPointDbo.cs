@@ -1,6 +1,6 @@
 ﻿using GeoCoordinatePortable;
 
-namespace DataStorageSystem
+namespace RubSort.DataStorageSystem
 {
     public class RecyclingPointDbo: EntityDbo
     {

@@ -1,4 +1,4 @@
-﻿namespace IdentitySystem
+﻿namespace RubSort.IdentitySystem
 {
     public interface IAuthenticationManager<T>
     {

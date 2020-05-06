@@ -1,4 +1,4 @@
-﻿namespace RecyclingPointsSystem
+﻿namespace RubSort.RecyclingPointsSystem
 {
     public class Contacts
     {

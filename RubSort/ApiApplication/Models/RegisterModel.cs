@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApiApplication.Models
+namespace RubSort.ApiApplication.Models
 {
     public class RegisterModel
     {

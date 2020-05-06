@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Core
+﻿namespace RubSort.Core
 {
     public class SettingsManager
     {

@@ -1,5 +1,6 @@
-﻿using Core;
-namespace DataStorageSystem
+﻿using RubSort.Core;
+
+namespace RubSort.DataStorageSystem
 {
     //todo
     public class SqlEntityRepository<T> : IEntityRepository<T>

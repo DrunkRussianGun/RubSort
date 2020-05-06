@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MapSystem
+namespace RubSort.MapSystem
 {
     public class MapRenderer
     {

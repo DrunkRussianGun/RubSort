@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace IdentitySystem
+namespace RubSort.IdentitySystem
 {
     public static class Encryption
     {

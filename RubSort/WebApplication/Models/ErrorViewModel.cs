@@ -1,6 +1,4 @@
-using System;
-
-namespace WebApplication.Models
+namespace RubSort.WebApplication.Models
 {
     public class ErrorViewModel
     {

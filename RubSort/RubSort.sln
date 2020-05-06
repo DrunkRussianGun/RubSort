@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentitySystem", "IdentityS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiApplication", "ApiApplication\ApiApplication.csproj", "{5190B632-3F9A-4B6B-8F54-A71D2FDACE38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{9F28736E-8944-460D-8662-E64F92023501}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiClient", "ApiClient\ApiClient.csproj", "{9F28736E-8944-460D-8662-E64F92023501}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

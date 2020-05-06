@@ -1,7 +1,7 @@
 ﻿using GeoCoordinatePortable;
-using RecyclingPointsSystem;
+using RubSort.RecyclingPointsSystem;
 
-namespace MapSystem
+namespace RubSort.MapSystem
 {
     public class MapRenderingContext
     {
