@@ -2,16 +2,22 @@
 
 namespace RubSort.DataStorageSystem
 {
-    public class RecyclingPointDbo: EntityDbo
+    public class RecyclingPointDbo : EntityDbo
     {
-        public string Name;
-        public string Description;
-        public string AddressCountry;
-        public string AddressCity;
-        public string AddressAddressLine;
-        public GeoCoordinate GeoCoordinate; 
-        public string ContactsEmail;
-        public string ContactsTelephone;
+        public string Name { get; set; }
         
+        public string Description { get; set; }
+        
+        public string AddressCountry { get; set; }
+        
+        public string AddressCity { get; set; }
+        
+        public string AddressAddressLine { get; set; }
+        
+        public GeoCoordinate GeoCoordinate { get; set; }
+        
+        public string ContactsEmail { get; set; }
+        
+        public string ContactsTelephone { get; set; }
     }
 }

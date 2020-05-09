@@ -4,13 +4,14 @@ namespace RubSort.WebApplication.Controllers
 {
     public class MapController : Controller
     {
-        private ApiClient.ApiClient _apiClient;
+        private ApiClient.ApiClient apiClient;
 
         public MapController(ApiClient.ApiClient apiClient)
         {
-            _apiClient = apiClient;
+            this.apiClient = apiClient;
         }
-        // GET
+        
+        [HttpGet]
         public IActionResult Render()
         {
             return View();

@@ -4,11 +4,11 @@ namespace RubSort.WebApplication.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private ApiClient.ApiClient _apiClient;
+        private ApiClient.ApiClient apiClient;
 
         public AuthenticationController(ApiClient.ApiClient apiClient)
         {
-            _apiClient = apiClient;
+            this.apiClient = apiClient;
         }
 
         [HttpGet]

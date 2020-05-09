@@ -2,11 +2,9 @@
 
 namespace RubSort.DataStorageSystem
 {
-    //todo
     public class SqlEntityRepository<T> : IEntityRepository<T>
     {
-        public SqlEntityRepository(
-            SettingsManager manager)
+        public SqlEntityRepository(SettingsManager settingsManager)
         {
             //todo
         }

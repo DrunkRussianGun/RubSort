@@ -5,11 +5,11 @@ namespace RubSort.RecyclingPointsSystem
 {
     public class RecyclingPointProvider
     {
-        private IEntityRepository<RecyclingPointDbo> _entityRepository;
+        private IEntityRepository<RecyclingPointDbo> entityRepository;
 
         public RecyclingPointProvider(IEntityRepository<RecyclingPointDbo> entityRepository)
         {
-            _entityRepository = entityRepository;
+            this.entityRepository = entityRepository;
         }
         
         public RecyclingPoint[] GetRecyclingPoints()

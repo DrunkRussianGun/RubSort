@@ -4,12 +4,13 @@ using RubSort.IdentitySystem;
 
 namespace RubSort.ApiApplication.Models
 {
-    public class UserDto
+    public class UserModel
     {
-        public string Email;
-        public string Password;
+        public string Email { get; set; }
+        
+        public string Password { get; set; }
 
-        public UserDto(string email, string password)
+        public UserModel(string email, string password)
         {
             Email = email;
             Password = password;

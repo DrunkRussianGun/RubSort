@@ -4,9 +4,11 @@ namespace RubSort.RecyclingPointsSystem
 {
     public class Address
     {
-        public string Country;
-        public string City;
-        public string AddressLine;
+        public string Country { get; set; }
+        
+        public string City { get; set; }
+        
+        public string AddressLine { get; set; }
 
         public override string ToString()
         {

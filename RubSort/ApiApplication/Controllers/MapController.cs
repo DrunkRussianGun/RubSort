@@ -6,13 +6,14 @@ namespace RubSort.ApiApplication.Controllers
 {
     public class MapController : Controller
     {
-        private MapRenderer _mapRenderer;
+        private MapRenderer mapRenderer;
 
         public MapController(MapRenderer mapRenderer)
         {
-            _mapRenderer = mapRenderer;
+            this.mapRenderer = mapRenderer;
         }
-        // GET
+        
+        [HttpGet]
         public IActionResult Render()
         {
             //todo

@@ -2,6 +2,6 @@
 {
     public class EntityDbo
     {
-        public long Id;
+        public long Id { get; set; }
     }
 }

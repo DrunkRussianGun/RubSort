@@ -5,8 +5,10 @@ namespace RubSort.MapSystem
 {
     public class MapRenderingContext
     {
-        GeoCoordinate InitialPoint;
-        int Zoom;
-        RecyclingPoint[] RecyclingPoints;
+        public GeoCoordinate InitialPoint { get; set; }
+        
+        public double Zoom { get; set; }
+        
+        public RecyclingPoint[] RecyclingPoints { get; set; }
     }
 }

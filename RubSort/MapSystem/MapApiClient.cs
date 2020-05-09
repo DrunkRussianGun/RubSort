@@ -6,10 +6,9 @@ namespace RubSort.MapSystem
 {
     public class MapApiClient
     {
-        private HttpClient _httpClient;
+        private HttpClient httpClient;
         
-        public string GetScriptWithMap(
-            MapRenderingContext context)
+        public string GetScriptWithMap(MapRenderingContext context)
         {
             //todo
             throw new NotImplementedException();

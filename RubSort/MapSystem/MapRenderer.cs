@@ -4,14 +4,15 @@ namespace RubSort.MapSystem
 {
     public class MapRenderer
     {
-        private OrganizationInfoProvider _organizationInfoProvider;
-        private MapApiClient _mapApiClient;
+        private OrganizationInfoProvider organizationInfoProvider;
+        private MapApiClient mapApiClient;
 
-        public MapRenderer(OrganizationInfoProvider organizationInfoProvider,
+        public MapRenderer(
+            OrganizationInfoProvider organizationInfoProvider,
             MapApiClient mapApiClient)
         {
-            _organizationInfoProvider = organizationInfoProvider;
-            _mapApiClient = mapApiClient;
+            this.organizationInfoProvider = organizationInfoProvider;
+            this.mapApiClient = mapApiClient;
         }
 
         public RenderedMap Render(MapRenderingContext context)

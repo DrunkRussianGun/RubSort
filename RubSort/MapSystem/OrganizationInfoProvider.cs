@@ -6,9 +6,9 @@ namespace RubSort.MapSystem
 {
     public class OrganizationInfoProvider
     {
-        private MapApiClient _mapApiClient;
+        private MapApiClient mapApiClient;
 
-        GeoCoordinate FindCoordinate(string point, Address Address)
+        GeoCoordinate FindCoordinate(string point, Address address)
         {
             //todo
             throw new NotImplementedException();

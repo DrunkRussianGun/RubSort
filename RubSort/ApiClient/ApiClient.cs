@@ -4,12 +4,11 @@ namespace RubSort.ApiClient
 {
     public class ApiClient
     {
-        private HttpClient _httpClient;
+        private HttpClient httpClient;
 
         public ApiClient(HttpClient httpClient)
         {
-            _httpClient = httpClient;
+            this.httpClient = httpClient;
         }
-        //...
     }
 }
