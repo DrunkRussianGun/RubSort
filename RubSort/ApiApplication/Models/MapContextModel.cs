@@ -5,7 +5,7 @@ using RubSort.MapSystem;
 
 namespace RubSort.ApiApplication.Models
 {
-    public class MapRenderingContextModel
+    public class MapContextModel
     {
         public GeoCoordinate InitialPoint { get; set; }
         
@@ -16,7 +16,7 @@ namespace RubSort.ApiApplication.Models
             throw new NotImplementedException();
         }
 
-        public ValidationResult<MapRenderingContext> ToDomainModel()
+        public ValidationResult<MapContext> ToDomainModel()
         {
             var validationResult = Validate();
             

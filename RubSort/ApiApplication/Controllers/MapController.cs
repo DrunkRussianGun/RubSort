@@ -1,22 +1,24 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using RubSort.ApiApplication.Models;
 using RubSort.MapSystem;
 
 namespace RubSort.ApiApplication.Controllers
 {
     public class MapController : Controller
     {
-        private MapRenderer mapRenderer;
+        private MapGetter mapGetter;
 
-        public MapController(MapRenderer mapRenderer)
+        public MapController(MapGetter mapGetter)
         {
-            this.mapRenderer = mapRenderer;
+            this.mapGetter = mapGetter;
         }
         
         [HttpGet]
-        public IActionResult Render()
+        public IActionResult Get(MapContextModel mapContext)
         {
-            //todo
+            var validationResult = mapContext.ToDomainModel();
+
             throw new NotImplementedException();
         }
     }

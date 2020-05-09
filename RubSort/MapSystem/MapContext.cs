@@ -1,14 +1,15 @@
-﻿using GeoCoordinatePortable;
+﻿using System.Collections.Generic;
+using GeoCoordinatePortable;
 using RubSort.RecyclingPointsSystem;
 
 namespace RubSort.MapSystem
 {
-    public class MapRenderingContext
+    public class MapContext
     {
         public GeoCoordinate InitialPoint { get; set; }
         
         public double Zoom { get; set; }
         
-        public RecyclingPoint[] RecyclingPoints { get; set; }
+        public ICollection<RecyclingPoint> RecyclingPoints { get; set; }
     }
 }
