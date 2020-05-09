@@ -1,22 +1,22 @@
 ﻿using System;
+using GeoCoordinatePortable;
 using RubSort.Core.Results;
-using RubSort.IdentitySystem;
+using RubSort.MapSystem;
 
 namespace RubSort.ApiApplication.Models
 {
-    public class UserModel
+    public class MapRenderingContextModel
     {
-        public string Email { get; set; }
+        public GeoCoordinate InitialPoint { get; set; }
         
-        public string Password { get; set; }
+        public double Zoom { get; set; }
 
         public ValidationResult Validate()
         {
-            //todo
             throw new NotImplementedException();
         }
 
-        public ValidationResult<User> ToDomainModel()
+        public ValidationResult<MapRenderingContext> ToDomainModel()
         {
             var validationResult = Validate();
             
