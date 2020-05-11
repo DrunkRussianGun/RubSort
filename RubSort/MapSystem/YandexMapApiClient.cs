@@ -1,8 +1,7 @@
-﻿using System;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using RubSort.Core;
 using RubSort.RecyclingPointsSystem;
 
 namespace RubSort.MapSystem
@@ -14,26 +13,26 @@ namespace RubSort.MapSystem
         private const string yandexMapApiOrganizationsUrlSetting = "YandexMapApiOrganizationsUrl";
         
         private readonly HttpClient httpClient;
-        private readonly ISettingsManager settingsManager;
+        private readonly IConfiguration configuration;
 
-        public YandexMapApiClient(HttpClient httpClient, ISettingsManager settingsManager)
+        public YandexMapApiClient(HttpClient httpClient, IConfiguration configuration)
         {
             this.httpClient = httpClient;
-            this.settingsManager = settingsManager;
+            this.configuration = configuration;
         }
 
         public Map GetMap(MapContext context)
         {
-            var apiKey = settingsManager.GetSetting(yandexMapApiKeySetting);
+            var apiKey = configuration[yandexMapApiKeySetting];
             var htmlScript = GenerateMap(context, apiKey); // сгенерировать скрипт с картой
             return new Map { HtmlScript = htmlScript };
         }
 
         public RecyclingPoint GetInfo(RecyclingPoint recyclingPoint)
         {
-            var apiKey = settingsManager.GetSetting(yandexMapApiKeySetting);
-            var apiBaseUrl = settingsManager.GetSetting(yandexMapApiBaseUrlSetting);
-            var apiOrganizationsUrl = settingsManager.GetSetting(yandexMapApiOrganizationsUrlSetting);
+            var apiKey = configuration[yandexMapApiKeySetting];
+            var apiBaseUrl = configuration[yandexMapApiBaseUrlSetting];
+            var apiOrganizationsUrl = configuration[yandexMapApiOrganizationsUrlSetting];
 
             // с помощью httpClient отправить запрос по адресу apiBaseUrl + apiOrganizationsUrl
             var response = httpClient.GetAsync(apiBaseUrl + apiOrganizationsUrl).Result;

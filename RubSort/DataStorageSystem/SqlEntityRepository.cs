@@ -1,10 +1,10 @@
-﻿using RubSort.Core;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace RubSort.DataStorageSystem
 {
     public class SqlEntityRepository<T> : IEntityRepository<T>
     {
-        public SqlEntityRepository(ISettingsManager settingsManager)
+        public SqlEntityRepository(IConfiguration configuration)
         {
             //todo
         }
