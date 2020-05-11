@@ -7,7 +7,7 @@ namespace RubSort.ApiApplication.Controllers
 {
     public class MapController : Controller
     {
-        private MapGetter mapGetter;
+        private readonly MapGetter mapGetter;
 
         public MapController(MapGetter mapGetter)
         {

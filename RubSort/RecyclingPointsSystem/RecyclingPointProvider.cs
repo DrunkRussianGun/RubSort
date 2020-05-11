@@ -1,21 +1,20 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using RubSort.DataStorageSystem;
 
 namespace RubSort.RecyclingPointsSystem
 {
     public class RecyclingPointProvider
     {
-        private readonly IEntityRepository<RecyclingPointDbo> _entityRepository;
+        private readonly IEntityRepository<RecyclingPointDbo> entityRepository;
 
         public RecyclingPointProvider(IEntityRepository<RecyclingPointDbo> entityRepository)
         {
-            _entityRepository = entityRepository;
+            this.entityRepository = entityRepository;
         }
         
         public RecyclingPoint[] GetRecyclingPoints()
         {
-            return _entityRepository.Get()
+            return entityRepository.Get()
                 .Select(rp => new RecyclingPoint()
                 {
                     Name = rp.Name,
