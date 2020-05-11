@@ -5,9 +5,10 @@ using RubSort.DataStorageSystem;
 
 namespace RubSort.IdentitySystem
 {
-    public class AuthenticationManager : IAuthenticationManager<ClaimsIdentity>
+    public class AuthenticationManager
     {
         private readonly IEntityRepository<UserDbo> userRepository;
+        
         public AuthenticationManager(IEntityRepository<UserDbo> userRepository)
         {
             this.userRepository = userRepository;
