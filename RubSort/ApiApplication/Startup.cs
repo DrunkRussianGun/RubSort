@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -68,7 +69,7 @@ namespace RubSort.ApiApplication
             });
         }
 
-        private static void AddIdentitySystem(IServiceCollection services)
+        private void AddIdentitySystem(IServiceCollection services)
         {
             services.AddScoped<AuthenticationManager>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -79,20 +80,25 @@ namespace RubSort.ApiApplication
                     });
         }
 
-        private static void AddMapSystem(IServiceCollection services)
+        private void AddMapSystem(IServiceCollection services)
         {
             services.AddScoped<MapGetter>();
             services.AddScoped<IMapApiClient, YandexMapApiClient>();
         }
 
-        private static void AddRecyclingPointsSystem(IServiceCollection services)
+        private void AddRecyclingPointsSystem(IServiceCollection services)
         {
             services.AddScoped<RecyclingPointProvider>();
         }
 
-        private static void AddDataStorageSystem(IServiceCollection services)
+        private void AddDataStorageSystem(IServiceCollection services)
         {
             services.AddScoped(typeof(IEntityRepository<>), typeof(SqlEntityRepository<>));
+            services.AddDbContext<DbContext>(options =>
+            {
+                var connectionString = Configuration.GetConnectionString("Default");
+                options.UseNpgsql(connectionString);
+            });
         }
     }
 }
