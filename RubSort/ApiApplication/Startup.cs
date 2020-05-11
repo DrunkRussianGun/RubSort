@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql;
 using RubSort.DataStorageSystem;
 using RubSort.IdentitySystem;
 using RubSort.MapSystem;
@@ -94,9 +96,25 @@ namespace RubSort.ApiApplication
         private void AddDataStorageSystem(IServiceCollection services)
         {
             services.AddScoped(typeof(IEntityRepository<>), typeof(SqlEntityRepository<>));
-            services.AddDbContext<DbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
             {
-                var connectionString = Configuration.GetConnectionString("Default");
+                var databaseUrl = Configuration["SQL_DATABASE_URL"]
+                    ?? Configuration["ConnectionStrings:Default"];
+                var databaseUri = new Uri(databaseUrl);
+                var userInfo = databaseUri.UserInfo.Split(':');
+
+                var connectionStringBuilder = new NpgsqlConnectionStringBuilder
+                {
+                    Host = databaseUri.Host,
+                    Port = databaseUri.Port,
+                    Username = userInfo[0],
+                    Password = userInfo[1],
+                    Database = databaseUri.LocalPath.TrimStart('/'),
+                    SslMode = SslMode.Require,
+                    TrustServerCertificate = true
+                };
+                var connectionString = connectionStringBuilder.ToString();
+                
                 options.UseNpgsql(connectionString);
             });
         }

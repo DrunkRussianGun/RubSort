@@ -1,7 +1,9 @@
-﻿using GeoCoordinatePortable;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using GeoCoordinatePortable;
 
 namespace RubSort.DataStorageSystem
 {
+    [Table("RecyclingPoints")]
     public class RecyclingPointDbo : EntityDbo
     {
         public string Name { get; set; }

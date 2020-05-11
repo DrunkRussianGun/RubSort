@@ -1,19 +1,16 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace RubSort.DataStorageSystem
 {
     public class SqlEntityRepository<T> : IEntityRepository<T>
         where T : class
     {
-        private readonly DbContext context;
+        private readonly ApplicationDbContext context;
         private readonly DbSet<T> set;
         
-        public SqlEntityRepository(DbContext context)
+        public SqlEntityRepository(ApplicationDbContext context)
         {
-            context.Database.EnsureCreated();
-            
             this.context = context;
             set = context.Set<T>();
         }
