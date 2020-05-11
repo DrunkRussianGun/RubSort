@@ -25,7 +25,9 @@ namespace RubSort.ApiApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            // todo: заменить на services.AddControllers();
+            // todo: когда разделим веб-приложение и API
+            services.AddControllersWithViews();
             
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -37,7 +39,7 @@ namespace RubSort.ApiApplication
             services.AddScoped<HttpClient>();
             
             AddDataStorageSystem(services);
-            AddIdentitySystem(services);
+            // AddIdentitySystem(services);
             AddRecyclingPointsSystem(services);
             AddMapSystem(services);
         }
@@ -56,10 +58,10 @@ namespace RubSort.ApiApplication
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthentication();
+            // app.UseAuthentication();
             app.UseEndpoints(routes =>
             {
                 routes.MapDefaultControllerRoute();

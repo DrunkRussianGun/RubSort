@@ -38,12 +38,11 @@ namespace RubSort.ApiApplication.Controllers
             return View(model);
         }
 
-        // GET
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-        
         
         [HttpPost]
         [ValidateAntiForgeryToken]
