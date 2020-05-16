@@ -10,6 +10,10 @@ namespace RubSort.WebApplication.Controllers
         {
             return View();
         }
+        
+        public IActionResult Plastic() => View();
+        public IActionResult Paper() => View();
+        public IActionResult Aluminum() => View();
 
         public IActionResult Privacy()
         {

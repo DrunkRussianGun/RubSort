@@ -5,7 +5,6 @@ using RubSort.ApiApplication.Models;
 
 namespace RubSort.ApiApplication.Controllers
 {
-    // [Authorize]
     public class HomeController : Controller
     {
         public IActionResult Index()
