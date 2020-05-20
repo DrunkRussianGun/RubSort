@@ -355,5 +355,6 @@ MigrationBackup/
 #JetBrains IDEs
 .idea/
 
-
+# Secrets
 Properties/
+secrets.json

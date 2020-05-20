@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace RubSort.ApiApplication
@@ -12,6 +13,10 @@ namespace RubSort.ApiApplication
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostContext, config) =>
+                {
+                    config.AddJsonFile("secrets.json", false, true);
+                })
                 .ConfigureWebHostDefaults(builder =>
                 {
                     builder.UseStartup<Startup>();
