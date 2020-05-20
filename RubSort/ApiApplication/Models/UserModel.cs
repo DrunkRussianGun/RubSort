@@ -12,14 +12,11 @@ namespace RubSort.ApiApplication.Models
 
         public ValidationResult Validate()
         {
-            //todo
             throw new NotImplementedException();
         }
 
-        public ValidationResult<User> ToDomainModel()
+        public User ToDomainModel()
         {
-            var validationResult = Validate();
-            
             throw new NotImplementedException();
         }
     }

@@ -16,11 +16,13 @@ namespace RubSort.ApiApplication.Models
             throw new NotImplementedException();
         }
 
-        public ValidationResult<MapContext> ToDomainModel()
+        public MapContext ToDomainModel()
         {
-            var validationResult = Validate();
-            
-            throw new NotImplementedException();
+            return new MapContext
+            {
+                InitialPoint = InitialPoint,
+                Zoom = Zoom
+            };
         }
     }
 }
