@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Globalization;
+using System.Net.Http;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -8,7 +9,7 @@ namespace RubSort.MapSystem
 {
     public class YandexMapApiClient : IMapApiClient
     {
-        private const string yandexMapApiKeySetting = "YandexMapApiKey";
+        private const string apiKeySetting = "YandexMapApi:ApiKey";
         private const string yandexMapApiBaseUrlSetting = "YandexMapApiBaseUrl";
         private const string yandexMapApiOrganizationsUrlSetting = "YandexMapApiOrganizationsUrl";
         
@@ -23,14 +24,21 @@ namespace RubSort.MapSystem
 
         public Map GetMap(MapContext context)
         {
-            var apiKey = configuration[yandexMapApiKeySetting];
-            var htmlScript = GenerateMap(context, apiKey); // сгенерировать скрипт с картой
-            return new Map { HtmlScript = htmlScript };
+            var apiKey = configuration[apiKeySetting];
+            var mapRenderingScript = RenderMap(apiKey);
+            
+            var mapConfigurationScript = ConfigureMap(context);
+            
+            return new Map
+            {
+                MapRenderingScript = mapRenderingScript,
+                MapConfigurationScript = mapConfigurationScript
+            };
         }
 
         public RecyclingPoint GetInfo(RecyclingPoint recyclingPoint)
         {
-            var apiKey = configuration[yandexMapApiKeySetting];
+            var apiKey = configuration[apiKeySetting];
             var apiBaseUrl = configuration[yandexMapApiBaseUrlSetting];
             var apiOrganizationsUrl = configuration[yandexMapApiOrganizationsUrlSetting];
 
@@ -45,21 +53,25 @@ namespace RubSort.MapSystem
             return recyclingPointInfo;
         }
 
-        private string GenerateMap(MapContext context, string apiKey)
+        private string RenderMap(string apiKey)
+        {
+            return $@"
+    <script
+        src=""https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey={apiKey}""
+        type=""text/javascript""></script>";
+        }
+
+        private string ConfigureMap(MapContext context)
         {
             var builder = new StringBuilder();
-            builder.Append($@"<!DOCTYPE html>
-                <html xmlns=""http://www.w3.org/1999/xhtml"">
-                <head>
-                    <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" />
-                    <script src=""https://api-maps.yandex.ru/2.1/?apikey={apiKey}&lang=ru_RU"" type=""text/javascript"">
-                    </script>
-                    <script type=""text/javascript"">
+            builder.Append($@"<script type=""text/javascript"">
                         ymaps.ready(init);
                         function init() {{
                             var myMap = new ymaps.Map(""map"", {{ 
-                                center: [{context.InitialPoint.Latitude}, {context.InitialPoint.Longitude}],
-                                zoom: {context.Zoom} 
+                                center: [
+{context.InitialPoint.Latitude.ToString(NumberFormatInfo.InvariantInfo)},
+{context.InitialPoint.Longitude.ToString(NumberFormatInfo.InvariantInfo)}],
+                                zoom: {context.Zoom}
                             }});");
 
             var points = context.RecyclingPoints;
@@ -72,13 +84,7 @@ namespace RubSort.MapSystem
             }
 
             builder.Append(@"}
-                    </script>
-                </head>
-
-                <body>
-                    <div id=""map"" style=""width: 1000px; height: 600px""></div>
-                </body>
-                </html>");
+                    </script>");
             return builder.ToString();
         }
     }

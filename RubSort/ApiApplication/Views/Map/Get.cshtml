@@ -9,13 +9,11 @@
 <html>
 <head>
     <title>Карта</title>
-    <script
-        src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey="
-        type="text/javascript">
-    </script>
-    <script>
-        @Model?.HtmlScript
-    </script>
+    
+    @Html.Raw(Model?.MapRenderingScript)
+    
+    @Html.Raw(Model?.MapConfigurationScript)
+    
     <style>
         html, body, #map {
             width: 100%; height: 100%; padding: 0; margin: 0;

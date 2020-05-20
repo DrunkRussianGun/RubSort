@@ -2,6 +2,8 @@
 {
     public class MapViewModel
     {
-        public string HtmlScript { get; set; }
+        public string MapRenderingScript { get; set; }
+        
+        public string MapConfigurationScript { get; set; }
     }
 }

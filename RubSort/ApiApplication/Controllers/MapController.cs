@@ -19,12 +19,16 @@ namespace RubSort.ApiApplication.Controllers
         {
             var context = new MapContextModel
             {
-                InitialPoint = new GeoCoordinate(),
-                Zoom = 9.0
+                InitialPoint = new GeoCoordinate(55.7848, 49.1144),
+                Zoom = 13.0
             };
             var map = Get(context);
 
-            var model = new MapViewModel { HtmlScript = map.HtmlScript };
+            var model = new MapViewModel
+            {
+                MapRenderingScript = map.MapRenderingScript,
+                MapConfigurationScript = map.MapConfigurationScript
+            };
             return View(model);
         }
         
