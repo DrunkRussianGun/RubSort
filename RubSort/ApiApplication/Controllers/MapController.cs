@@ -1,4 +1,4 @@
-﻿using System;
+﻿using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Mvc;
 using RubSort.ApiApplication.Models.Map;
 using RubSort.MapSystem;
@@ -15,17 +15,23 @@ namespace RubSort.ApiApplication.Controllers
         }
 
         [HttpGet]
-        public IActionResult Render()
+        public IActionResult Get()
         {
-            return View();
+            var context = new MapContextModel
+            {
+                InitialPoint = new GeoCoordinate(),
+                Zoom = 9.0
+            };
+            var map = Get(context);
+
+            var model = new MapViewModel { HtmlScript = map.HtmlScript };
+            return View(model);
         }
         
-        [HttpGet]
-        public IActionResult Get(MapContextModel mapContext)
+        private Map Get(MapContextModel mapContext)
         {
-            var validationResult = mapContext.ToDomainModel();
-
-            throw new NotImplementedException();
+            var context = mapContext.ToDomainModel();
+            return mapGetter.GetMap(context);
         }
     }
 }
