@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RubSort.ApiApplication.Models;
 
@@ -12,6 +11,10 @@ namespace RubSort.ApiApplication.Controllers
             return View();
         }
         
+        public IActionResult Plastic() => View();
+        public IActionResult Paper() => View();
+        public IActionResult Aluminum() => View();
+
         public IActionResult Privacy()
         {
             return View();

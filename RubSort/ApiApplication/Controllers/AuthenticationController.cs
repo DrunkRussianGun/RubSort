@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using RubSort.ApiApplication.Models;
+using RubSort.ApiApplication.Models.Authentication;
 using RubSort.IdentitySystem;
 
 namespace RubSort.ApiApplication.Controllers
@@ -22,7 +22,7 @@ namespace RubSort.ApiApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -46,7 +46,7 @@ namespace RubSort.ApiApplication.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
             
@@ -68,7 +68,7 @@ namespace RubSort.ApiApplication.Controllers
         }
         
         [HttpPost]
-        public IActionResult ResetPassword(RegisterModel model)
+        public IActionResult ResetPassword(RegisterViewModel model)
         {
             if (!ModelState.IsValid) return View();
             

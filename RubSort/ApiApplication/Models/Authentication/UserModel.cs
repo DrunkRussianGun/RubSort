@@ -2,7 +2,7 @@
 using RubSort.Core.Results;
 using RubSort.IdentitySystem;
 
-namespace RubSort.ApiApplication.Models
+namespace RubSort.ApiApplication.Models.Authentication
 {
     public class UserModel
     {

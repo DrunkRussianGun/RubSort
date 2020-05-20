@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RubSort.WebApplication.Models
+namespace RubSort.ApiApplication.Models.Authentication
 {
     public class LoginViewModel
     {

@@ -3,7 +3,7 @@ using GeoCoordinatePortable;
 using RubSort.Core.Results;
 using RubSort.MapSystem;
 
-namespace RubSort.ApiApplication.Models
+namespace RubSort.ApiApplication.Models.Map
 {
     public class MapContextModel
     {

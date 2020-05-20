@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using RubSort.ApiApplication.Models;
+using RubSort.ApiApplication.Models.Map;
 using RubSort.MapSystem;
 
 namespace RubSort.ApiApplication.Controllers
@@ -12,6 +12,12 @@ namespace RubSort.ApiApplication.Controllers
         public MapController(MapGetter mapGetter)
         {
             this.mapGetter = mapGetter;
+        }
+
+        [HttpGet]
+        public IActionResult Render()
+        {
+            return View();
         }
         
         [HttpGet]
