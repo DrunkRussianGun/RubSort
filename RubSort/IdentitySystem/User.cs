@@ -4,7 +4,7 @@ namespace RubSort.IdentitySystem
 {
     public class User
     {
-        public string Email;
+        public string Email { get; set; }
 
         public User(string email)
         {

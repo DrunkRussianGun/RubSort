@@ -7,12 +7,6 @@
         <LangVersion>8</LangVersion>
     </PropertyGroup>
 
-
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.App" />
-    </ItemGroup>
-
-
     <ItemGroup>
       <ProjectReference Include="..\IdentitySystem\IdentitySystem.csproj" />
       <ProjectReference Include="..\MapSystem\MapSystem.csproj" />

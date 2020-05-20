@@ -1,22 +1,41 @@
-﻿using System;
+﻿using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Mvc;
+using RubSort.ApiApplication.Models.Map;
 using RubSort.MapSystem;
 
 namespace RubSort.ApiApplication.Controllers
 {
     public class MapController : Controller
     {
-        private MapRenderer _mapRenderer;
+        private readonly MapGetter mapGetter;
 
-        public MapController(MapRenderer mapRenderer)
+        public MapController(MapGetter mapGetter)
         {
-            _mapRenderer = mapRenderer;
+            this.mapGetter = mapGetter;
         }
-        // GET
-        public IActionResult Render()
+
+        [HttpGet]
+        public IActionResult Get()
         {
-            //todo
-            throw new NotImplementedException();
+            var context = new MapContextModel
+            {
+                InitialPoint = new GeoCoordinate(55.7848, 49.1144),
+                Zoom = 13.0
+            };
+            var map = Get(context);
+
+            var model = new MapViewModel
+            {
+                MapRenderingScript = map.MapRenderingScript,
+                MapConfigurationScript = map.MapConfigurationScript
+            };
+            return View(model);
+        }
+        
+        private Map Get(MapContextModel mapContext)
+        {
+            var context = mapContext.ToDomainModel();
+            return mapGetter.GetMap(context);
         }
     }
 }

@@ -1,12 +1,18 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Net.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql;
+using RubSort.DataStorageSystem;
 using RubSort.IdentitySystem;
+using RubSort.MapSystem;
+using RubSort.RecyclingPointsSystem;
 
 namespace RubSort.ApiApplication
 {
@@ -22,7 +28,9 @@ namespace RubSort.ApiApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            // todo: заменить на services.AddControllers();
+            // todo: когда разделим веб-приложение и API
+            services.AddControllersWithViews();
             
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -30,12 +38,13 @@ namespace RubSort.ApiApplication
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddScoped<IAuthenticationManager<ClaimsIdentity>, AuthenticationManager>();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.LoginPath = new PathString("/Authentication/Login");
-                });
+
+            services.AddScoped<HttpClient>();
+            
+            AddDataStorageSystem(services);
+            // AddIdentitySystem(services);
+            AddRecyclingPointsSystem(services);
+            AddMapSystem(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,14 +61,61 @@ namespace RubSort.ApiApplication
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthentication();
+            // app.UseAuthentication();
             app.UseEndpoints(routes =>
             {
                 routes.MapDefaultControllerRoute();
+            });
+        }
+
+        private void AddIdentitySystem(IServiceCollection services)
+        {
+            services.AddScoped<AuthenticationManager>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(
+                    options =>
+                    {
+                        options.LoginPath = new PathString("/Authentication/Login");
+                    });
+        }
+
+        private void AddMapSystem(IServiceCollection services)
+        {
+            services.AddScoped<MapGetter>();
+            services.AddScoped<IMapApiClient, YandexMapApiClient>();
+        }
+
+        private void AddRecyclingPointsSystem(IServiceCollection services)
+        {
+            services.AddScoped<RecyclingPointProvider>();
+        }
+
+        private void AddDataStorageSystem(IServiceCollection services)
+        {
+            services.AddScoped(typeof(IEntityRepository<>), typeof(SqlEntityRepository<>));
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                var databaseUrl = Configuration["SQL_DATABASE_URL"]
+                    ?? Configuration["ConnectionStrings:Default"];
+                var databaseUri = new Uri(databaseUrl);
+                var userInfo = databaseUri.UserInfo.Split(':');
+
+                var connectionStringBuilder = new NpgsqlConnectionStringBuilder
+                {
+                    Host = databaseUri.Host,
+                    Port = databaseUri.Port,
+                    Username = userInfo[0],
+                    Password = userInfo[1],
+                    Database = databaseUri.LocalPath.TrimStart('/'),
+                    SslMode = SslMode.Require,
+                    TrustServerCertificate = true
+                };
+                var connectionString = connectionStringBuilder.ToString();
+                
+                options.UseNpgsql(connectionString);
             });
         }
     }

@@ -1,34 +1,43 @@
-﻿using RubSort.Core;
+﻿using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace RubSort.DataStorageSystem
 {
-    //todo
     public class SqlEntityRepository<T> : IEntityRepository<T>
+        where T : class
     {
-        public SqlEntityRepository(
-            SettingsManager manager)
+        private readonly ApplicationDbContext context;
+        private readonly DbSet<T> set;
+        
+        public SqlEntityRepository(ApplicationDbContext context)
         {
-            //todo
+            this.context = context;
+            set = context.Set<T>();
         }
 
         public T[] Get()
         {
-            throw new System.NotImplementedException();
+            return set.AsNoTracking().ToArray();
         }
 
-        public void Add(T entity)
+        public void Add(params T[] entities)
         {
-            throw new System.NotImplementedException();
+            set.AddRange(entities);
+            context.SaveChanges();
         }
 
-        public void Update(T entity)
+        public void Update(params T[] entities)
         {
-            throw new System.NotImplementedException();
+            set.UpdateRange(entities);
+            context.SaveChanges();
         }
 
-        public void Remove(long value)
+        public void Remove(params long[] ids)
         {
-            throw new System.NotImplementedException();
+            var entitiesToRemove = ids
+                .Select(id => set.Find(id));
+            set.RemoveRange(entitiesToRemove);
+            context.SaveChanges();
         }
     }
 }

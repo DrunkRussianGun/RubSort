@@ -1,20 +1,20 @@
 ﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RubSort.ApiApplication.Models;
 
 namespace RubSort.ApiApplication.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
-        
         public IActionResult Index()
         {
             return View();
         }
-
         
+        public IActionResult Plastic() => View();
+        public IActionResult Paper() => View();
+        public IActionResult Aluminum() => View();
+
         public IActionResult Privacy()
         {
             return View();

@@ -3,18 +3,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using RubSort.ApiApplication.Models;
+using RubSort.ApiApplication.Models.Authentication;
 using RubSort.IdentitySystem;
 
 namespace RubSort.ApiApplication.Controllers
 {
     public class AuthenticationController : Controller
     {
-        private readonly AuthenticationManager _authenticationManager;
+        private readonly AuthenticationManager authenticationManager;
 
         public AuthenticationController(AuthenticationManager authenticationManager)
         {
-            _authenticationManager = authenticationManager;
+            this.authenticationManager = authenticationManager;
         }
         
         [HttpGet]
@@ -22,11 +22,12 @@ namespace RubSort.ApiApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+                return View(model);
 
-            var result = _authenticationManager.Login(model.Email);
+            var result = authenticationManager.Login(model.Email);
             if (result != null)
             {
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(result));
@@ -37,20 +38,19 @@ namespace RubSort.ApiApplication.Controllers
             return View(model);
         }
 
-        // GET
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
         
-        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
             
-            var result = _authenticationManager.Register(model.Email, model.Password);
+            var result = authenticationManager.Register(model.Email, model.Password);
             if (result != null)
             {
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(result));
@@ -68,11 +68,11 @@ namespace RubSort.ApiApplication.Controllers
         }
         
         [HttpPost]
-        public IActionResult ResetPassword(RegisterModel model)
+        public IActionResult ResetPassword(RegisterViewModel model)
         {
             if (!ModelState.IsValid) return View();
             
-            _authenticationManager.ChangePassword(model.Email, model.Password);
+            authenticationManager.ChangePassword(model.Email, model.Password);
 
             return View("Login");
         }

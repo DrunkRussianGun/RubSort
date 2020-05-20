@@ -5,22 +5,23 @@ using RubSort.DataStorageSystem;
 
 namespace RubSort.IdentitySystem
 {
-    public class AuthenticationManager : IAuthenticationManager<ClaimsIdentity>
+    public class AuthenticationManager
     {
-        private readonly IEntityRepository<UserDbo> _userRepository;
+        private readonly IEntityRepository<UserDbo> userRepository;
+        
         public AuthenticationManager(IEntityRepository<UserDbo> userRepository)
         {
-            _userRepository = userRepository;
+            this.userRepository = userRepository;
         }
 
         public bool IsRegisteredUser(string userEmail)
         {
-            return _userRepository.Get().FirstOrDefault(u => u.Email == userEmail) != default(UserDbo);
+            return userRepository.Get().FirstOrDefault(u => u.Email == userEmail) != default(UserDbo);
         }
 
         public void ChangePassword(string userEmail, string password)
         {
-            _userRepository.Update(new UserDbo()
+            userRepository.Update(new UserDbo()
             {
                 Email = userEmail, 
                 Password = Encryption.EncryptPasswordMD5(password, userEmail)
@@ -29,9 +30,10 @@ namespace RubSort.IdentitySystem
 
         public ClaimsIdentity Register(string userEmail, string password)
         {
-            if(IsRegisteredUser(userEmail))
+            if (IsRegisteredUser(userEmail))
                 return null;
-            _userRepository.Add(new UserDbo()
+            
+            userRepository.Add(new UserDbo()
             {
                 Email = userEmail, 
                 Password = Encryption.EncryptPasswordMD5(password, userEmail)
