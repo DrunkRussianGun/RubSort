@@ -22,8 +22,9 @@ namespace RubSort.MapSystem
                 .GetRecyclingPoints()
                 .Select(point =>
                 {
-                    var receivedInfo = mapApiClient.GetInfo(point);
-                    return MergeRecyclingPointInfo(point, receivedInfo);
+                    // var receivedInfo = mapApiClient.GetInfo(point);
+                    // return MergeRecyclingPointInfo(point, receivedInfo);
+                    return point;
                 })
                 .Where(point => point.GeoCoordinate != null)
                 .ToList();

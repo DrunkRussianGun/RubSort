@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RubSort.DataStorageSystem.Dbo;
 
 namespace RubSort.DataStorageSystem
 {

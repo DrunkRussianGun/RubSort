@@ -1,5 +1,7 @@
 ﻿using System.Linq;
+using GeoCoordinatePortable;
 using RubSort.DataStorageSystem;
+using RubSort.DataStorageSystem.Dbo;
 
 namespace RubSort.RecyclingPointsSystem
 {
@@ -15,16 +17,20 @@ namespace RubSort.RecyclingPointsSystem
         public RecyclingPoint[] GetRecyclingPoints()
         {
             return entityRepository.Get()
-                .Select(rp => new RecyclingPoint()
+                .Select(point => new RecyclingPoint
                 {
-                    Name = rp.Name,
-                    Description = rp.Description,
-                    Address = new Address()
+                    Name = point.Name,
+                    Description = point.Description,
+                    Address = new Address
                     {
-                        AddressLine = rp.AddressAddressLine, City = rp.AddressCity, Country = rp.AddressCountry
+                        AddressLine = point.AddressAddressLine, City = point.AddressCity, Country = point.AddressCountry
                     },
-                    Contacts = new Contacts() {Email = rp.ContactsEmail, Telephone = rp.ContactsTelephone},
-                    GeoCoordinate = rp.GeoCoordinate
+                    Contacts = new Contacts {Email = point.ContactsEmail, Telephone = point.ContactsTelephone},
+                    GeoCoordinate = point.GeoCoordinate?.Latitude != null && point.GeoCoordinate.Longitude != null
+                        ? new GeoCoordinate(
+                            point.GeoCoordinate.Latitude.Value,
+                            point.GeoCoordinate.Longitude.Value)
+                        : null
                 })
                 .ToArray();
         }

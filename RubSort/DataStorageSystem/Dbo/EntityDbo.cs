@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RubSort.DataStorageSystem
+namespace RubSort.DataStorageSystem.Dbo
 {
     public class EntityDbo
     {

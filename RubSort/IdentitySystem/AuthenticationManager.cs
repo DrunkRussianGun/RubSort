@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 using RubSort.DataStorageSystem;
+using RubSort.DataStorageSystem.Dbo;
 
 namespace RubSort.IdentitySystem
 {
