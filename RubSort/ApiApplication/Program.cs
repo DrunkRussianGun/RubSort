@@ -15,7 +15,7 @@ namespace RubSort.ApiApplication
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, config) =>
                 {
-                    config.AddJsonFile("secrets.json", false, true);
+                    config.AddJsonFile("secrets.json", true, true);
                 })
                 .ConfigureWebHostDefaults(builder =>
                 {
