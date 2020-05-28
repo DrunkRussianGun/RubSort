@@ -64,28 +64,30 @@ namespace RubSort.MapSystem
         private string ConfigureMap(MapContext context)
         {
             var builder = new StringBuilder();
-            builder.Append($@"<script type=""text/javascript"">
+            builder.AppendLine($@"<script type=""text/javascript"">
                         ymaps.ready(init);
                         function init() {{
                             var myMap = new ymaps.Map(""map"", {{ 
-                                center: [
-{context.InitialPoint.Latitude.ToString(NumberFormatInfo.InvariantInfo)},
-{context.InitialPoint.Longitude.ToString(NumberFormatInfo.InvariantInfo)}],
-                                zoom: {context.Zoom}
+                                center: [" +
+                               $@"{ConvertToString(context.InitialPoint.Latitude)}, " +
+                               $@"{ConvertToString(context.InitialPoint.Longitude)}],
+                                zoom: {ConvertToString(context.Zoom)}
                             }});");
 
-            var points = context.RecyclingPoints;
-            foreach (var point in points)
-            {
-                var newPoint = GetInfo(point);
-                builder.Append(
-                    $@"var myPlacemark = new ymaps.Placemark([{newPoint.GeoCoordinate.Latitude}, {newPoint.GeoCoordinate.Longitude}]);
-                    myMap.geoObjects.add(myPlacemark);");
-            }
+            foreach (var point in context.RecyclingPoints)
+                builder.AppendLine(
+                    $@"myMap.geoObjects.add(new ymaps.Placemark([" +
+                    $@"{ConvertToString(point.GeoCoordinate.Latitude)}, " +
+                    $@"{ConvertToString(point.GeoCoordinate.Longitude)}], {{
+                        iconCaption: '{point.Name}'
+                    }}));");
 
-            builder.Append(@"}
+            builder.AppendLine(@"}
                     </script>");
             return builder.ToString();
         }
+
+        private static string ConvertToString(double number) =>
+            number.ToString(NumberFormatInfo.InvariantInfo);
     }
 }
