@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RubSort.DataStorageSystem
+namespace RubSort.DataStorageSystem.Dbo
 {
     [Table("Users")]
     public class UserDbo : EntityDbo

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using RubSort.DataStorageSystem;
+using RubSort.DataStorageSystem.Dbo;
 
 namespace RubSort.RecyclingPointsSystem
 {
